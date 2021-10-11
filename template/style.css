@@ -37,6 +37,14 @@ footer {
 
 /* Common*/
 
+h1 {
+  font-size: 1.8rem;
+  padding: 1 rem 0;
+}
+h2 {
+  font-size: 1.6rem;
+  padding: 1 rem 0;
+}
 a {
   text-decoration: none;
 }
@@ -87,4 +95,14 @@ img.medium {
 }
 .card-body > * {
   margin-bottom: 0.5rem;
+}
+.price {
+  font-size: 2rem;
+}
+
+/* Rating */
+
+.rating span {
+  color: #f0c040;
+  margin: 0.1rem;
 }
