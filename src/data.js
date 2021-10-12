@@ -24,7 +24,7 @@ const data = {
     },
     {
       _id: '3',
-      name: 'The Mandalorian Talking Action Figure',
+      name: 'The Mandalorian Figure',
       category: 'Figures',
       image: '/images/p3.jpg',
       price: 32.99,
@@ -35,7 +35,7 @@ const data = {
     },
     {
       _id: '4',
-      name: 'Obi-Wans Hut Building Set by LEGO',
+      name: 'Obi-Wans Hut Building Set',
       category: 'Toys',
       image: '/images/p4.jpg',
       price: 29.99,
@@ -68,3 +68,4 @@ const data = {
     },
   ],
 };
+export default data;
