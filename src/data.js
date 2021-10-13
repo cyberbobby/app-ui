@@ -5,7 +5,7 @@ const data = {
       name: 'Star Wars Master Yoda Mug',
       category: 'Mugs',
       image: '/images/p1.jpg',
-      price: 12,
+      price: 19.95,
       brand: 'Etsy',
       rating: 4.5,
       numReviews: 10,
