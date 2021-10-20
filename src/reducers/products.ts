@@ -14,11 +14,11 @@ const initialState: ProductsState = {
 export const products = (state = initialState, action: any) => {
   switch (action.type) {
     case PRODUCT_LIST_REQUEST:
-      return { loading: true };
+      return { ...initialState, loading: true };
     case PRODUCT_LIST_SUCCESS:
-      return { loading: false, products: action.payload };
+      return { ...initialState, loading: false, products: action.payload };
     case PRODUCT_LIST_FAIL:
-      return { loading: false, error: action.payload };
+      return { ...initialState, loading: false, error: action.payload };
     default:
       return initialState;
   }

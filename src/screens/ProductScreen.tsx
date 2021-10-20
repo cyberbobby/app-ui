@@ -5,17 +5,27 @@ import { detailsProduct } from '../actions/productActions';
 import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
 import Rating from '../components/Rating';
+import { ProductsState, Product } from '../constants/interfaces';
+import { Store } from '../store';
 
-export default function ProductScreen(props) {
+const ProductScreen = (props: any) => {
   const dispatch = useDispatch();
   const productId = props.match.params.id;
   const [qty, setQty] = useState(1);
-  const productDetails = useSelector((state) => state.productDetails);
-  const { loading, error, product } = productDetails;
+  const { product, loading, error } = useSelector(
+    (state: Store) => state.productDetails
+  );
+  const [productState, setProductState] = useState({
+    product: {} as Product,
+  });
+
+  useEffect(() => {
+    setProductState({ product: product });
+  }, [product, qty]);
 
   useEffect(() => {
     dispatch(detailsProduct(productId));
-  }, [dispatch, productId]);
+  }, []);
   const addToCartHandler = () => {
     props.history.push(`/cart/${productId}?qty=${qty}`);
   };
@@ -83,7 +93,7 @@ export default function ProductScreen(props) {
                           <div>
                             <select
                               value={qty}
-                              onChange={(e) => setQty(e.target.value)}
+                              onChange={(e) => setQty(parseInt(e.target.value))}
                             >
                               {[...Array(product.countInStock).keys()].map(
                                 (x) => (
@@ -114,4 +124,6 @@ export default function ProductScreen(props) {
       )}
     </div>
   );
-}
+};
+
+export default ProductScreen;
