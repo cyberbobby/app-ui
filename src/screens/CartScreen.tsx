@@ -18,7 +18,6 @@ const CartScreen = (props: any) => {
       dispatch(addToCart(productId, qty));
     }
   }, [dispatch, productId, qty]);
-
   const removeFromCartHandler = (id: string) => {
     dispatch(removeFromCart(id));
   };
@@ -37,27 +36,37 @@ const CartScreen = (props: any) => {
           </MessageBox>
         ) : (
           <ul>
-            {products.map((item: Product) => (
-              <li key={item._id}>
+            {products.map((product: Product) => (
+              <li key={productId}>
                 <div className="row">
-                  <img src={item.image} alt={item.name} className="small"></img>
+                  <img
+                    src={product.image}
+                    alt={product.name}
+                    className="small"
+                  ></img>
                 </div>
                 <div className="min-30">
-                  <Link to={`/product/${item._id}`}>{item.name}</Link>
+                  <Link to={`/product/${productId}`}>{product.name}</Link>
                 </div>
                 <div>
                   <select
-                    value={item.qty}
+                    value={product.qty}
                     onChange={(e) =>
-                      dispatch(addToCart(item._id, Number(e.target.value)))
+                      dispatch(addToCart(productId, Number(e.target.value)))
                     }
-                  ></select>
+                  >
+                    {[...Array(product.countInStock).keys()].map((x) => (
+                      <option key={x + 1} value={x + 1}>
+                        {x + 1}
+                      </option>
+                    ))}
+                  </select>
                 </div>
-                <div>${item.price}</div>
+                <div>${product.price}</div>
                 <div>
                   <button
                     type="button"
-                    onClick={() => removeFromCartHandler(item._id)}
+                    onClick={() => removeFromCartHandler(`${productId}`)}
                   >
                     Delete
                   </button>

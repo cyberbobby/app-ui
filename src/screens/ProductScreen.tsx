@@ -5,7 +5,7 @@ import { detailsProduct } from '../actions/productActions';
 import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
 import Rating from '../components/Rating';
-import { ProductsState, Product } from '../constants/interfaces';
+import { Product } from '../constants/interfaces';
 import { Store } from '../store';
 
 const ProductScreen = (props: any) => {
@@ -25,7 +25,7 @@ const ProductScreen = (props: any) => {
 
   useEffect(() => {
     dispatch(detailsProduct(productId));
-  }, []);
+  }, [dispatch, productId]);
   const addToCartHandler = () => {
     props.history.push(`/cart/${productId}?qty=${qty}`);
   };
