@@ -1,19 +1,44 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { signin } from '../actions/userActions';
+import LoadingBox from '../components/LoadingBox';
+import MessageBox from '../components/MessageBox';
 
-export default function SigninScreen() {
+export default function SigninScreen(props: any) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  const redirect = props.location.search
+    ? props.location.search.split('=')[1]
+    : '/';
+
+  const userInfo = useSelector((state: any) => state.userSignin);
+  const loading = useSelector((state: any) => state.userSignin);
+  const error = useSelector((state: any) => state.userSignin);
+
+  /*  const { userInfo, loading, error } = useSelector(
+    (state: any) => state.userSignin
+  );*/
+
+  const dispatch = useDispatch();
   const submitHandler = (e: any) => {
     e.preventDefault();
-    // TODO: sigin action
+    dispatch(signin(email, password));
   };
+  useEffect(() => {
+    if (userInfo) {
+      props.history.push(redirect);
+    }
+  }, [props.history, redirect, userInfo]);
   return (
     <div>
       <form className="form" onSubmit={submitHandler}>
         <div>
           <h1>Sign In</h1>
         </div>
+        {loading && <LoadingBox></LoadingBox>}
+        {error && <MessageBox variant="danger">{error}</MessageBox>}
         <div>
           <label htmlFor="email">Email address</label>
           <input

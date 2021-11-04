@@ -27,3 +27,9 @@ export interface ProductDetailsState {
   loading: boolean;
   error: string;
 }
+
+export interface UserState {
+  //  users: User[];
+  loading: boolean;
+  error: string;
+}
