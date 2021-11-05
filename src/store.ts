@@ -1,7 +1,10 @@
 import rootReducer from './reducers';
 import { combineReducers } from 'redux';
 import { configureStore, createReducer } from '@reduxjs/toolkit';
-import { userSigninReducer } from './reducers/userReducers';
+import {
+  userRegisterReducer,
+  userSigninReducer,
+} from './reducers/userReducers';
 import { products } from './reducers/products';
 import { productDetails } from './reducers/productDetails';
 
@@ -23,6 +26,7 @@ import { productDetails } from './reducers/productDetails';
   productDetails: productDetails,
   cart: createReducer,
   userSignin: userSigninReducer,
+  userRegister: userRegisterReducer,
 });*/
 
 const store = configureStore({
